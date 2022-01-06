@@ -1,56 +1,48 @@
-import { csrfFetch } from "./csrf";
+import { csrfFetch } from './csrf';
 
-const SET = "session/SET";
-const REMOVE = "session/REMOVE";
+const SET_USER = 'session/setUser';
+const REMOVE_USER = 'session/removeUser';
 
-export const setSession = (user) => {
+const setUser = (user) => {
   return {
-    type: SET,
-    ...user,
+    type: SET_USER,
+    payload: user,
   };
 };
 
-export const removeSession = () => {
+const removeUser = () => {
   return {
-    type: REMOVE,
+    type: REMOVE_USER,
   };
 };
 
-export const login = (payload) => async (dispatch) => {
-  const response = await csrfFetch("/api/session", {
-    method: "POST",
-    body: JSON.stringify(payload),
+export const login = (user) => async (dispatch) => {
+  const { credential, password } = user;
+  const response = await csrfFetch('/api/session', {
+    method: 'POST',
+    body: JSON.stringify({
+      credential,
+      password,
+    }),
   });
-
-  if (response.ok) {
-    const user = await response.json();
-    dispatch(setSession(user));
-  }
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
 };
 
-const sessionReducer = (state = { user: null }, action) => {
+const initialState = { user: null };
+
+const sessionReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
-    case SET: {
-      console.log('USER', action.user.id)
-      const newState = {
-        ...state,
-        user: {
-          id: action.user.id,
-          email: action.user.email,
-          username: action.user.username,
-          createdAt: action.user.createdAt,
-          updatedAt: action.user.updatedAt,
-        },
-      };
+    case SET_USER:
+      newState = Object.assign({}, state);
+      newState.user = action.payload;
       return newState;
-    }
-    case REMOVE: {
-      const newState = {
-        ...state,
-        user: null,
-      };
+    case REMOVE_USER:
+      newState = Object.assign({}, state);
+      newState.user = null;
       return newState;
-    }
     default:
       return state;
   }
