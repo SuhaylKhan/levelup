@@ -1,60 +1,64 @@
-import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from "react";
+import * as sessionActions from "../../store/session";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import './LoginForm.css';
+import "./LoginForm.css";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
-  const [credential, setCredential] = useState('');
-  const [password, setPassword] = useState('');
+  const sessionUser = useSelector((state) => state.session.user);
+  const [credential, setCredential] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  let errorUl
+  let errorUl;
 
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
+  if (sessionUser) return <Redirect to="/" />;
 
   if (errors.length > 0) {
-    errorUl =
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+    errorUl = (
+      <ul className="error-list">
+        {errors.map((error, idx) => (
+          <li key={idx} className="error-item">{error}</li>
+        ))}
       </ul>
+    );
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-      });
-  }
+      }
+    );
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className="auth-form" onSubmit={handleSubmit}>
+      <label className="auth-label">
         Username or Email
         <input
+          className="auth-input"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
         />
       </label>
-      <label>
+      <label className="auth-label">
         Password
         <input
+          className="auth-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
       {errorUl}
-      <button type="submit">Log In</button>
+      <button className="auth-button" type="submit">Log In</button>
     </form>
   );
 }
