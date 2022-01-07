@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "./LoginForm.css";
 
-function LoginFormPage() {
+function LoginForm() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   let errorUl;
-
-  if (sessionUser) return <Redirect to="/" />;
 
   if (errors.length > 0) {
     errorUl = (
@@ -39,22 +35,23 @@ function LoginFormPage() {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
+      Log in
       <label className="auth-label">
-        Username or Email
         <input
           className="auth-input"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
+          placeholder="Username or Email"
         />
       </label>
       <label className="auth-label">
-        Password
         <input
           className="auth-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
         />
       </label>
       {errorUl}
@@ -63,4 +60,4 @@ function LoginFormPage() {
   );
 }
 
-export default LoginFormPage;
+export default LoginForm;

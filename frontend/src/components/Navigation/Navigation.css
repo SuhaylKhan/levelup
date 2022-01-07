@@ -59,10 +59,14 @@
   margin-top: 12px;
 }
 
-.nav-auth-link.logout {
+.nav-auth-link.button {
   margin: 0;
   border: none;
   background: none;
   padding: 0;
   font-size: 14px;
+}
+
+.nav-auth-link.button:hover {
+  cursor: pointer;
 }

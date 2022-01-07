@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <button onClick={logout} className="nav-auth-link logout">Log out</button>
+            <button onClick={logout} className="nav-auth-link button">Log out</button>
           </li>
         </ul>
       )}

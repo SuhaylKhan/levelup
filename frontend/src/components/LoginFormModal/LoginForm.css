@@ -1,12 +1,19 @@
-.auth-form {
-  border: 1px solid gray;
-  margin: 20px auto;
-  display: grid;
+#modal-content {
   padding: 20px;
-  box-sizing: border-box;
   width: 450px;
   border-radius: 10px;
   background-color: ghostwhite;
+
+}
+
+.auth-form {
+  display: grid;
+  font-size: 28px;
+  text-align: center;
+}
+
+.auth-label:first-child {
+  margin-top: 20px;
 }
 
 .auth-label {
@@ -54,8 +61,4 @@
 
 .error-item {
   padding: 5px 0;
-}
-
-.button {
-  
 }
