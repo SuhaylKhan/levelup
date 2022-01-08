@@ -16,7 +16,9 @@ function LoginForm() {
     errorUl = (
       <ul className="error-list">
         {errors.map((error, idx) => (
-          <li key={idx} className="error-item">{error}</li>
+          <li key={idx} className="error-item">
+            {error}
+          </li>
         ))}
       </ul>
     );
@@ -55,7 +57,9 @@ function LoginForm() {
         />
       </label>
       {errorUl}
-      <button className="auth-button" type="submit">Log In</button>
+      <button className="auth-button" type="submit">
+        Log In
+      </button>
     </form>
   );
 }

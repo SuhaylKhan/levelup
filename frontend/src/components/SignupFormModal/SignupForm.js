@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 
 import "./SignupForm.css";
 
-function SignupFormPage() {
+function SignupForm() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,8 +13,6 @@ function SignupFormPage() {
   const [errors, setErrors] = useState([]);
 
   let errorUl;
-
-  if (sessionUser) return <Redirect to="/" />;
 
   if (errors.length > 0) {
     errorUl = (
@@ -48,40 +44,41 @@ function SignupFormPage() {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
+      Sign up
       <label className="auth-label">
-        Email
         <input
           className="auth-input"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
         />
       </label>
       <label className="auth-label">
-        Username
         <input
           className="auth-input"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
         />
       </label>
       <label className="auth-label">
-        Password
         <input
           className="auth-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
         />
       </label>
       <label className="auth-label">
-        Confirm Password
         <input
           className="auth-input"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder="Confirm Password"
         />
       </label>
       {errorUl}
@@ -92,4 +89,4 @@ function SignupFormPage() {
   );
 }
 
-export default SignupFormPage;
+export default SignupForm;

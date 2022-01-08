@@ -12,7 +12,7 @@ import * as sessionActions from "./store/session";
 
 const store = configureStore();
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
 
   window.csrfFetch = csrfFetch;
@@ -23,18 +23,18 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalProvider>
     </Provider>
   );
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <ModalProvider>
-      <Root />
-    </ModalProvider>
+    <Root />
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
