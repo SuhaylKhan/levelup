@@ -47,9 +47,11 @@ function SignupForm({ prop }) {
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
       Sign up
-      <div>
+      <div className="form-toggle-text">
         Already have an account?
-        <span onClick={() => setForm("login")}>Log in</span>
+        <span className="fake-button" onClick={() => setForm("login")}>
+          Log in
+        </span>
       </div>
       <label className="auth-label">
         <input

@@ -1,0 +1,71 @@
+#modal-content {
+  padding: 20px;
+  width: 450px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.auth-form {
+  display: grid;
+  font-size: 28px;
+  text-align: center;
+}
+
+.auth-label:first-child {
+  margin-top: 20px;
+}
+
+.auth-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.auth-input {
+  border-radius: 3px;
+  border: 1px solid gray;
+  margin-top: 4px;
+  padding: 3px 5px;
+}
+
+.auth-button {
+  display: flex;
+  justify-self: flex-end;
+  align-items: center;
+}
+
+.error-list {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  background-color: rgba(255, 0, 0, 0.25);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: brown;
+  font-size: 14px;
+}
+
+.error-item {
+  padding: 5px 0;
+}
+
+.form-toggle-text {
+  font-size: 14px;
+  padding: 20px;
+}
+
+.fake-button {
+  color: var(--accent1);
+}
+
+.fake-button:hover {
+  cursor: pointer;
+}
+
+.fake-button:active {
+  color: var(--accent2);
+}
+
+.form-toggle-text > .fake-button {
+  padding-left: 0.25rem;
+}

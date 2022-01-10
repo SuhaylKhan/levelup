@@ -2,8 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
 import AuthFormModal from '../AuthFormModal';
 import logo from '../../assets/lvlup-full-logo.png'
 import './Navigation.css';
@@ -17,8 +15,6 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        {/* <LoginFormModal /> */}
-        {/* <SignupFormModal /> */}
         <AuthFormModal />
       </>
     );
@@ -28,7 +24,6 @@ function Navigation({ isLoaded }) {
     <ul className="nav">
       <li>
         <NavLink exact to="/" className="nav-home-link">
-          {/* <i className="fas fa-home"></i> */}
           <img src={logo} alt="Levelup Logo" height="20px" />
         </NavLink>
       </li>
