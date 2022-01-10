@@ -10,7 +10,8 @@ module.exports = {
       },
       adminId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: { model: 'Users' }
       },
       name: {
         type: Sequelize.STRING(100),
