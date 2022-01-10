@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import AuthFormModal from '../AuthFormModal';
 import logo from '../../assets/lvlup-full-logo.png'
 import './Navigation.css';
 
@@ -16,8 +17,9 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <SignupFormModal />
+        {/* <LoginFormModal /> */}
+        {/* <SignupFormModal /> */}
+        <AuthFormModal />
       </>
     );
   }
