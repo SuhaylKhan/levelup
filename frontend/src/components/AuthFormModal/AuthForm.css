@@ -56,6 +56,8 @@
 
 .fake-button {
   color: var(--accent1);
+  border: none;
+  background: none;
 }
 
 .fake-button:hover {

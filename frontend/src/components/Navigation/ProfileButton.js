@@ -36,15 +36,17 @@ function ProfileButton({ user }) {
       >
         <i className="fas fa-chevron-down"></i>
       </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout} className="nav-auth-link button">Log out</button>
-          </li>
-        </ul>
-      )}
+      <ul
+        className={showMenu ? "profile-dropdown showing" : "profile-dropdown"}
+      >
+        <li>{user.username}</li>
+        <li>{user.email}</li>
+        <li>
+          <button onClick={logout} className="fake-button">
+            Log out
+          </button>
+        </li>
+      </ul>
     </>
   );
 }
