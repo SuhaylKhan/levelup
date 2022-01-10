@@ -2,7 +2,7 @@
   padding: 20px;
   width: 450px;
   border-radius: 10px;
-  background-color: ghostwhite;
+  background-color: white;
 }
 
 .auth-form {
@@ -30,22 +30,8 @@
 
 .auth-button {
   display: flex;
-  width: 25%;
   justify-self: flex-end;
-  justify-content: center;
-  border: 1px solid gray;
-  border-radius: 3px;
-  padding: 2px 0;
-}
-
-.auth-button:hover {
-  cursor: pointer;
-}
-
-.auth-button:active {
-  background-color: lightgray;
-  color: gray;
-  border-color: rgba(128, 128, 128, 0.75);
+  align-items: center;
 }
 
 .error-list {

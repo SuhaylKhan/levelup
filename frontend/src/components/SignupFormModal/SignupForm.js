@@ -82,7 +82,7 @@ function SignupForm() {
         />
       </label>
       {errorUl}
-      <button className="auth-button" type="submit">
+      <button className="auth-button generic-button" type="submit">
         Sign Up
       </button>
     </form>

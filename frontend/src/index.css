@@ -1,8 +1,35 @@
 /* TODO Add site wide styles */
+:root {
+  --accent1: #F65858;
+  --accent2: #008294;
+}
+
 html {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   margin: 0;
   color: #212121;
   background-color: ghostwhite;
+}
+
+/* Generic button styling */
+.generic-button {
+  border: none;
+  background: none;
+  background-color: var(--accent1);
+  font-size: 14px;
+  color: whitesmoke;
+  height: 2rem;
+  width: fit-content;
+  border-radius: 0.25rem;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.generic-button:hover {
+  cursor: pointer;
+}
+
+.generic-button:active {
+  background-color: var(--accent2);
 }

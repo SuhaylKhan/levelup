@@ -57,7 +57,7 @@ function LoginForm() {
         />
       </label>
       {errorUl}
-      <button className="auth-button" type="submit">
+      <button className="generic-button auth-button" type="submit">
         Log In
       </button>
     </form>
