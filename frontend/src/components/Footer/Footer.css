@@ -1,0 +1,52 @@
+.footer-container {
+  background-color: #212121;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  color: lightgray;
+  padding: 40px;
+  font-size: 12px;
+}
+
+.techs {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  width: 50%;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid lightgray;
+}
+
+.copyright {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: fit-content;
+}
+
+.copyright > span {
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.links {
+  font-size: 14px;
+}
+
+.links > * {
+  padding-right: 10px;
+  color: lightgray;
+}
+
+.links > *:hover {
+  color: white;
+}
