@@ -4,6 +4,13 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 100]
+      }
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,13 +21,25 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error('Cannot be an email.');
           }
         },
+        isUnique(value) {
+          return User.findOne({ where: { username: value } })
+            .then(name => {
+              if (name) throw new Error('Sorry, that username is taken.')
+            })
+        }
       },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 256]
+        len: [3, 256],
+        isUnique(value) {
+          return User.findOne({ where: { email: value } })
+            .then(email => {
+              if (email) throw new Error('That email is already registered to an account.')
+            })
+        }
       },
     },
     hashedPassword: {
@@ -86,9 +105,10 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
   };
-  User.signup = async function ({ username, email, password }) {
+  User.signup = async function ({ fullName, username, email, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
+      fullName,
       username,
       email,
       hashedPassword,

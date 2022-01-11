@@ -6,6 +6,7 @@ import "./SignupForm.css";
 
 function SignupForm({ prop }) {
   const dispatch = useDispatch();
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -28,12 +29,14 @@ function SignupForm({ prop }) {
     );
   }
 
+  console.log(errors)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signup({ email, username, password })
+        sessionActions.signup({ fullName, email, username, password })
       ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -53,6 +56,15 @@ function SignupForm({ prop }) {
           Log in
         </span>
       </div>
+      <label className="auth-label">
+        <input
+          className="auth-input"
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          placeholder="Full Name"
+        />
+      </label>
       <label className="auth-label">
         <input
           className="auth-input"
