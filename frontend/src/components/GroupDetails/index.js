@@ -6,7 +6,7 @@ function GroupDetails() {
 
   return (
     <>
-      <h1>SUCCESS</h1>
+      <h1>GROUP DETAILS COMPONENT</h1>
     </>
   )
 };
