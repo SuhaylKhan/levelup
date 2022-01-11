@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import CreateEventForm from '../CreateEventForm';
 
 function GroupDetails() {
   const params = useParams();
@@ -7,11 +9,17 @@ function GroupDetails() {
   const group = useSelector((state) => state.groups[groupId])
   const sessionUser = useSelector((state) => state.session.user)
 
+  const [showEventForm, setShowEventForm] = useState(false);
+
   let createEvent;
 
   if (sessionUser.id === group.adminId) {
     createEvent = (
-      <button>Create an Event</button>
+      <button
+        onClick={() => setShowEventForm(true)}
+      >
+        Create an Event
+      </button>
     )
   }
 
@@ -23,7 +31,7 @@ function GroupDetails() {
       </div>
       <div className='group-event'>
         <h2>Upcoming Events</h2>
-        {createEvent}
+        {showEventForm ? <CreateEventForm props={{setShowEventForm}} /> : createEvent}
       </div>
     </>
   )
