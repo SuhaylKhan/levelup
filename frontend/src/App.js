@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import GroupDetails from "./components/GroupDetails";
+import Groups from "./components/Groups";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,8 +25,14 @@ function App() {
           <Route exact path="/">
             <Splash />
           </Route>
+          <Route exact path="/groups">
+            <Groups />
+          </Route>
           <Route path="/groups/:groupId">
             <GroupDetails />
+          </Route>
+          <Route>
+            404 NOT FOUND
           </Route>
         </Switch>
       )}
