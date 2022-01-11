@@ -13,6 +13,10 @@ html {
   height: 100%;
 }
 
+body {
+  margin-top: 7.5rem;
+}
+
 /* Generic button styling */
 .generic-button {
   border: none;
