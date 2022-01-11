@@ -15,7 +15,7 @@ export const getGroups = () => async (dispatch) => {
   const data = await response.json();
   dispatch(setGroups(data.groups));
   return response;
-}
+};
 
 const groupsReducer = (state = {}, action) => {
   switch (action.type) {
