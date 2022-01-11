@@ -29,8 +29,6 @@ function SignupForm({ prop }) {
     );
   }
 
-  console.log(errors)
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
