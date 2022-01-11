@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
+import GroupDetails from "./components/GroupDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Splash />
+          </Route>
+          <Route path="/groups/:groupId">
+            <GroupDetails />
           </Route>
         </Switch>
       )}
