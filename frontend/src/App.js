@@ -9,6 +9,7 @@ import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import GroupDetails from "./components/GroupDetails";
 import Groups from "./components/Groups";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Splash />
+            {sessionUser ? <Redirect to="/users/:userId" /> : <Splash />}
           </Route>
           <Route exact path="/groups">
             {/* {sessionUser ? <Groups /> : <Redirect to="/" />} */}
@@ -35,6 +36,9 @@ function App() {
           <Route path="/groups/:groupId">
             {/* {sessionUser ? <GroupDetails /> : <Redirect to="/" />} */}
             <GroupDetails />
+          </Route>
+          <Route path="/users/:userId">
+            <UserProfile />
           </Route>
           <Route>
             404 NOT FOUND
