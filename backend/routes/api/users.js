@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Group } = require('../../db/models');
 
 const router = express.Router();
 
@@ -26,6 +26,26 @@ const validateSignup = [
     .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors,
 ];
+
+router.get(
+  '/:userId/groups',
+  asyncHandler(async (req, res) => {
+    const { Op } = require('sequelize');
+    const userId = req.params.userId;
+
+    const memberGroups = await User.findByPk(userId, {
+      include: Group
+    });
+    const adminGroups = await Group.findAll({
+      where: { adminId: userId }
+    })
+
+    return res.json({
+      memberGroups,
+      adminGroups
+    })
+  })
+)
 
 router.post(
   '/',

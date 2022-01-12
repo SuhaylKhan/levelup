@@ -16,7 +16,7 @@ router.get(
   '/:id',
   asyncHandler(async (req, res) => {
     const groupId = req.params.id;
-    const group = await Group.findByPK(groupId);
+    const group = await Group.findByPk(groupId);
 
     return res.json({ group });
   })

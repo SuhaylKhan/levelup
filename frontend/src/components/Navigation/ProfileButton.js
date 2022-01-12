@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const history = useHistory();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -30,6 +32,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
+      <div>{user.username}</div>
       <button
         className={showMenu ? "menu-button active" : "menu-button"}
         onClick={openMenu}
@@ -39,8 +42,11 @@ function ProfileButton({ user }) {
       <ul
         className={showMenu ? "profile-dropdown showing" : "profile-dropdown"}
       >
-        <li>{user.username}</li>
-        <li>{user.email}</li>
+        <li>
+          <button onClick={() => history.push(`/users/${user.id}`)} className="fake-button">
+            Your profile
+          </button>
+        </li>
         <li>
           <button onClick={logout} className="fake-button">
             Log out
