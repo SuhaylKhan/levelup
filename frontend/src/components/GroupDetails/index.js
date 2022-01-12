@@ -31,7 +31,7 @@ function GroupDetails() {
       </div>
       <div className='group-event'>
         <h2>Upcoming Events</h2>
-        {showEventForm ? <CreateEventForm props={{setShowEventForm}} /> : createEvent}
+        {showEventForm ? <CreateEventForm props={{ setShowEventForm, group }} /> : createEvent}
       </div>
     </>
   )

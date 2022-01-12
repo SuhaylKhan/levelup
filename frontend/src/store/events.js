@@ -17,6 +17,33 @@ export const getEvents = () => async (dispatch) => {
   return response;
 };
 
+export const createEvent = (event) => async (dispatch) => {
+  const {
+    hostId,
+    groupId,
+    name,
+    description,
+    date,
+    capacity,
+    inPerson
+  } = event;
+  const response = await csrfFetch('/api/events', {
+    method: 'POST',
+    body: JSON.stringify({
+      hostId,
+      groupId,
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    })
+  });
+  const data = await response.json();
+  dispatch(getEvents());
+  return response;
+};
+
 const eventsReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_EVENTS: {

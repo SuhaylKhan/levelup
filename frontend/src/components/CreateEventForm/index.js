@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as eventActions from '../../store/events';
 
 function CreateEventForm({ props }) {
+  const { setShowEventForm, group } = props;
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+
   const dateObj = new Date();
   const year = dateObj.getFullYear();
   const month = dateObj.getMonth() + 1;
   const day = dateObj.getDate()
   const today = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}T00:00`
 
-  const { setShowEventForm } = props;
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(today);
@@ -17,7 +22,16 @@ function CreateEventForm({ props }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    const event = {
+      hostId: sessionUser.id,
+      groupId: group.id,
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    };
+    return dispatch(eventActions.createEvent(event));
   }
 
   return (
