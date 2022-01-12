@@ -1,29 +1,3 @@
-.small-container {
-  border-radius: 1rem;
-  box-shadow: 0 1px 0.25rem lightgray;
-  height: 17rem;
-  width: 23rem;
-  display: grid;
-  color: #FFFAFA;
-  /* margin: 0 20px; */
-}
-
-.group-name {
-  font-size: 21px;
-  align-self: flex-end;
-  padding-bottom: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  margin-top: 0;
-  border-bottom: 1px solid #FFFAFA;
-}
-
-.group-description {
-  margin: 0 20px;
-  /* padding: 0 20px; */
-}
-
 .to-right-top{
   background-image: linear-gradient(to right top, #f65858, #d95aa2, #8b75c9, #2083be, #008294);
 }
@@ -58,4 +32,39 @@
 
 .to-circle{
   background-image: radial-gradient(circle, #f65858, #d95aa2, #8b75c9, #2083be, #008294);
+}
+
+.small-container {
+  border-radius: 1rem;
+  box-shadow: 0 1px 0.25rem gray;
+  height: 17rem;
+  width: 23rem;
+  display: grid;
+  color: #FFFAFA;
+  transition: box-shadow 0.5s;
+}
+
+.small-container:hover {
+  cursor: pointer;
+  box-shadow: 0 0 1rem gray;
+}
+
+.small-container:active {
+  background-image: none;
+  background-color: var(--accent2);
+}
+
+.group-name {
+  font-size: 21px;
+  align-self: flex-end;
+  padding-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  border-bottom: 1px solid #FFFAFA;
+}
+
+.group-description {
+  margin: 0 20px;
 }

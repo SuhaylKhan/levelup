@@ -1,4 +1,8 @@
+import { useHistory } from 'react-router-dom';
+
 function SmallGroupPreview({ groups }) {
+  const history = useHistory();
+
   const randomClass = [
     'right-top', 'right', 'right-bottom', 'bottom',
     'left-bottom', 'left', 'left-top', 'top',
@@ -11,7 +15,11 @@ function SmallGroupPreview({ groups }) {
         const group = ele[1];
         const randomNum = Math.floor(Math.random() * 9)
         return (
-          <div key={i} className={`small-container to-${randomClass[randomNum]}`}>
+          <div
+            key={i}
+            className={`small-container to-${randomClass[randomNum]}`}
+            onClick={() => history.push(`/groups/${group.id}`)}
+          >
             <h2 className='group-name'>{group.name}</h2>
             <p className='group-description'>{group.description}</p>
           </div>

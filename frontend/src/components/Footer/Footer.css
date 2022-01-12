@@ -2,7 +2,8 @@
   background-color: #212121;
   width: 100%;
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
+  bottom: 0;
   left: 0;
   color: lightgray;
   padding: 40px;

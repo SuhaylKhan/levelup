@@ -24,23 +24,17 @@ function UserProfile({ sessionUser }) {
           {Object.keys(userGroups).length > 0 ?
             (<>
               <h1>Your Groups</h1>
-              <GroupPreview size="small" groups={userGroups} />
-              {Object.entries(userGroups).map(ele => {
-                const group = ele[1];
-                return (
-                  <Link key={group.id} to={`/groups/${group.id}`}>
-                    <h2>{group.name}</h2>
-                    <p>{group.description}</p>
-                  </Link>
-                )
-              })}
-              <div>
-                Eager for another gaming sesh?
-                <button
-                  onClick={() => history.push('/groups')}
-                >
-                  Browse All Groups
-                </button>
+              <div className="scroll-container">
+                <GroupPreview size="small" groups={userGroups} />
+                <div className="browse-all">
+                  <h2>Eager to find a new squad?</h2>
+                  <button
+                    className="generic-button"
+                    onClick={() => history.push('/groups')}
+                  >
+                    Browse Other Groups
+                  </button>
+                </div>
               </div>
             </>)
             :
