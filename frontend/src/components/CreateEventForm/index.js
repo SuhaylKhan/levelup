@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import * as eventActions from '../../store/events';
 
 function CreateEventForm({ props }) {
   const { setShowEventForm, group } = props;
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
 
   const dateObj = new Date();
   const year = dateObj.getFullYear();
@@ -45,8 +47,14 @@ function CreateEventForm({ props }) {
       capacity,
       inPerson
     };
+
     return dispatch(
       eventActions.createEvent(event)
+    ).then(
+      () => {
+        setErrors([]);
+        setShowEventForm(false);
+      }
     ).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);

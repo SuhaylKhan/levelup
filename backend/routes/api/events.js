@@ -38,7 +38,6 @@ router.post(
   '/',
   validateEvent,
   asyncHandler(async (req, res, next) => {
-    console.log('MADE IT PAST VALIDATIONS')
     const {
       hostId,
       groupId,
