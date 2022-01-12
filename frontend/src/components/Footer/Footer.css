@@ -2,8 +2,7 @@
   background-color: #212121;
   width: 100%;
   box-sizing: border-box;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
   left: 0;
   color: lightgray;
   padding: 40px;

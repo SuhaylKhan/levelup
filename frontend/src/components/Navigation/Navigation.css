@@ -11,6 +11,8 @@
   top: 0;
   left: 0;
   box-sizing: border-box;
+  z-index: 1;
+  box-shadow: 0 1px 0.25rem lightgray;
 }
 
 .nav-links > * {

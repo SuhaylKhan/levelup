@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
+import GroupPreview from '../GroupPreview';
+import './UserProfile.css'
 
 function UserProfile({ sessionUser }) {
   const dispatch = useDispatch();
@@ -16,12 +18,13 @@ function UserProfile({ sessionUser }) {
   }, [dispatch])
 
   return (
-    <>
-      {isLoaded && (
+    <div className='profile-container'>
+      {isLoaded && userGroups && (
         <>
-          {Object.keys(userGroups) > 0 ?
-            <>
+          {Object.keys(userGroups).length > 0 ?
+            (<>
               <h1>Your Groups</h1>
+              <GroupPreview size="small" groups={userGroups} />
               {Object.entries(userGroups).map(ele => {
                 const group = ele[1];
                 return (
@@ -39,9 +42,9 @@ function UserProfile({ sessionUser }) {
                   Browse All Groups
                 </button>
               </div>
-            </>
+            </>)
             :
-            <>
+            (<>
               <h1>Welcome to Levelup!</h1>
               <div>
                 Find your squad
@@ -51,11 +54,11 @@ function UserProfile({ sessionUser }) {
                   Join a Group
                 </button>
               </div>
-            </>
+            </>)
           }
         </>
       )}
-    </>
+    </div>
   )
 };
 
