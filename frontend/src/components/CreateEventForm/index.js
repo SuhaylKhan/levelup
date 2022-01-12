@@ -20,6 +20,20 @@ function CreateEventForm({ props }) {
   const [inPerson, setInPerson] = useState(true);
   const [errors, setErrors] = useState([]);
 
+  let errorUl;
+
+  if (errors.length > 0) {
+    errorUl = (
+      <ul>
+        {errors.map((error, idx) => (
+          <li key={idx} className="error-item">
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const event = {
@@ -31,7 +45,12 @@ function CreateEventForm({ props }) {
       capacity,
       inPerson
     };
-    return dispatch(eventActions.createEvent(event));
+    return dispatch(
+      eventActions.createEvent(event)
+    ).catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+    });
   }
 
   return (
@@ -112,6 +131,7 @@ function CreateEventForm({ props }) {
               'Make sure to add event details in the text box above so everyone knows where/how to join your online event'
           }
         </p>
+        {errorUl}
         <button>Create Event</button>
       </form>
       <button

@@ -14,7 +14,17 @@ const validateEvent = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a description/details.'),
   check('date')
-]
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a valid date and time')
+    .isISO8601()
+    .withMessage('Please provide a valid date and time.'),
+  check('capacity')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide an RSVP capacity.')
+    .custom(value => value >= 1)
+    .withMessage('RSVP capacity must be greater than or equal to 1.'),
+  handleValidationErrors
+];
 
 router.get(
   '/',
@@ -26,9 +36,29 @@ router.get(
 
 router.post(
   '/',
-  asyncHandler(async (req, res) => {
-
+  validateEvent,
+  asyncHandler(async (req, res, next) => {
+    console.log('MADE IT PAST VALIDATIONS')
+    const {
+      hostId,
+      groupId,
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    } = req.body;
+    const event = Event.create({
+      hostId,
+      groupId,
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    });
+    return res.json({ event });
   })
-)
+);
 
 module.exports = router;

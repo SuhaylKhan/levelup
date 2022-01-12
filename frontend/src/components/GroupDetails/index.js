@@ -13,7 +13,7 @@ function GroupDetails() {
 
   let createEvent;
 
-  if (sessionUser.id === group.adminId) {
+  if (sessionUser && group && sessionUser.id === group.adminId) {
     createEvent = (
       <button
         onClick={() => setShowEventForm(true)}
@@ -25,14 +25,18 @@ function GroupDetails() {
 
   return (
     <>
-      <div className='group-details'>
-        <h1>{group.name}</h1>
-        <p>{group.description}</p>
-      </div>
-      <div className='group-event'>
-        <h2>Upcoming Events</h2>
-        {showEventForm ? <CreateEventForm props={{ setShowEventForm, group }} /> : createEvent}
-      </div>
+      {group && (
+        <>
+          <div className='group-details'>
+            <h1>{group.name}</h1>
+            <p>{group.description}</p>
+          </div>
+          <div className='group-event'>
+            <h2>Upcoming Events</h2>
+            {showEventForm ? <CreateEventForm props={{ setShowEventForm, group }} /> : createEvent}
+          </div>
+        </>
+      )}
     </>
   )
 };
