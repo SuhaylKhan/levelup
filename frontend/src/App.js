@@ -27,7 +27,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            {sessionUser ? <Redirect to="/users/:userId" /> : <Splash />}
+            {sessionUser ? <Redirect to={`/users/${sessionUser.id}`} /> : <Splash />}
           </Route>
           <Route exact path="/groups">
             {/* {sessionUser ? <Groups /> : <Redirect to="/" />} */}
@@ -38,7 +38,7 @@ function App() {
             <GroupDetails />
           </Route>
           <Route path="/users/:userId">
-            <UserProfile />
+            {sessionUser ? <UserProfile sessionUser={sessionUser} /> : <Redirect to="/" />}
           </Route>
           <Route>
             404 NOT FOUND

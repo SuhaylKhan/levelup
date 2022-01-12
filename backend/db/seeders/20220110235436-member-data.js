@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Members', [
       {
         userId: 1,
-        groupId: 1
+        groupId: 2
       },
       {
         userId: 3,
@@ -14,6 +14,10 @@ module.exports = {
       {
         userId: 3,
         groupId: 3
+      },
+      {
+        userId: 1,
+        groupId: 1
       }
     ], {});
   },
