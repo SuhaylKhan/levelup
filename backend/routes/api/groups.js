@@ -8,7 +8,6 @@ router.get(
   '/',
   asyncHandler(async (req, res) => {
     const groups = await Group.findAll();
-
     return res.json({ groups });
   })
 );
