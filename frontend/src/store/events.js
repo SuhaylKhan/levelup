@@ -39,7 +39,32 @@ export const createEvent = (event) => async (dispatch) => {
       inPerson
     })
   });
-  const data = await response.json();
+  dispatch(getEvents());
+  return response;
+};
+
+export const editEvent = (event) => async (dispatch) => {
+  const {
+    eventId,
+    name,
+    description,
+    date,
+    capacity,
+    inPerson
+  } = event;
+  const response = await csrfFetch(
+    `/api/events/${eventId}`,
+    {
+      method: 'PUT',
+      body: JSON.stringify({
+        name,
+        description,
+        date,
+        capacity,
+        inPerson
+      })
+    }
+  );
   dispatch(getEvents());
   return response;
 };

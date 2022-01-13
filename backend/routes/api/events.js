@@ -62,4 +62,34 @@ router.post(
   })
 );
 
+router.put(
+  '/:eventId',
+  validateEvent,
+  asyncHandler(async (req, res, next) => {
+    const eventId = req.params.eventId;
+    const {
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    } = req.body;
+    const changes = {
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    };
+    if (req.body.venueId === null) changes.venueId = null;
+    const editedEvent = await Event.update(
+      changes,
+      {
+        where: { id: eventId }
+      }
+    );
+    return res.json({ editedEvent });
+  })
+)
+
 module.exports = router;
