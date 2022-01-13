@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
         className={showMenu ? "profile-dropdown showing" : "profile-dropdown"}
       >
         <li>
-          <button onClick={() => history.push(`/users/${user.id}`)} className="fake-button">
+          <button onClick={() => history.push(`/users/${user.id}`)} className="nav-auth-link button">
             Your profile
           </button>
         </li>
