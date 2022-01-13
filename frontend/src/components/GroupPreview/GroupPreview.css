@@ -68,3 +68,33 @@
 .group-description {
   margin: 0 20px;
 }
+
+.groups-container {
+  margin: 0 20px;
+  width: 50%;
+}
+
+.groups-container > *:not(:last-child) {
+  border-bottom: 1px solid #36454F;
+}
+
+.med-container {
+  color: #36454F;
+  padding: 20px 0;
+}
+
+.med-container:hover {
+  cursor: pointer;
+}
+
+.med-container:active {
+  color: var(--accent2);
+}
+
+.med-group-name {
+  margin: 10px 0;
+}
+
+.med-group-description {
+  margin: 10px 0;
+}
