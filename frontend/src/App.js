@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import * as groupActions from "./store/groups";
-import * as eventActions from "./store/events";
 import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import GroupDetails from "./components/GroupDetails";
 import Groups from "./components/Groups";
 import UserProfile from "./components/UserProfile";
+import Events from "./components/Events";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,8 +17,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser());
-    dispatch(groupActions.getGroups());
-    dispatch(eventActions.getEvents()).then(() => setIsLoaded(true));
+    dispatch(groupActions.getGroups()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return isLoaded && (
@@ -39,6 +38,9 @@ function App() {
           </Route>
           <Route path="/users/:userId">
             {sessionUser ? <UserProfile sessionUser={sessionUser} /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/events">
+            <Events />
           </Route>
           <Route>
             404 NOT FOUND

@@ -19,6 +19,11 @@
   margin-bottom: 20px;
 }
 
+.scroll-container > .event-preview {
+  margin: 0 20px;
+  margin-bottom: 20px;
+}
+
 .browse-all {
   margin: 0 20px;
   margin-bottom: 20px;
@@ -31,6 +36,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.browse-all.event {
+  height: 23rem;
 }
 
 .browse-all > h2 {
