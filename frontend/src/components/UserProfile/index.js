@@ -23,56 +23,32 @@ function UserProfile({ sessionUser }) {
     <div className='profile-container'>
       {isLoaded && userGroups && (
         <>
-          {Object.keys(userEvents).length > 0 ?
-            (<>
-              <div className="profile-header">Your Upcoming Events</div>
-              <div className="scroll-container">
-                <EventsPreview events={userEvents} />
-                <div className="event browse-all">
-                  <h2>Itching to get back into the game?</h2>
-                  <button
-                    className="generic-button"
-                    onClick={() => history.push('/events')}
-                  >
-                    Browse Other Upcoming Events
-                  </button>
-                </div>
-              </div>
-            </>)
-            :
-            (<>
-              <div>no hello</div>
-            </>)
-          }
-          {Object.keys(userGroups).length > 0 ?
-            (<>
-              <div className="profile-header">Your Groups</div>
-              <div className="scroll-container">
-                <GroupPreview size="small" groups={userGroups} />
-                <div className="browse-all">
-                  <h2>Eager to find a new squad?</h2>
-                  <button
-                    className="generic-button"
-                    onClick={() => history.push('/groups')}
-                  >
-                    Browse Other Groups
-                  </button>
-                </div>
-              </div>
-            </>)
-            :
-            (<>
-              <h1>Welcome to Levelup!</h1>
-              <div>
-                Find your squad
-                <button
-                  onClick={() => history.push('/groups')}
-                >
-                  Join a Group
-                </button>
-              </div>
-            </>)
-          }
+          <div className="profile-header">{Object.entries(userEvents).length > 0 ? 'Your Upcoming Events' : 'Welcome to Levelup!'}</div>
+          <div className="scroll-container">
+            <EventsPreview events={userEvents} />
+            <div className="event browse-all">
+              <h2>Itching to get back into the game?</h2>
+              <button
+                className="generic-button"
+                onClick={() => history.push('/events')}
+              >
+                Browse Other Upcoming Events
+              </button>
+            </div>
+          </div>
+          <div className="profile-header">{Object.entries(userGroups).length > 0 ? 'Your Groups' : "It's dangerous to go alone! Find your group."}</div>
+          <div className="scroll-container">
+            <GroupPreview size="small" groups={userGroups} />
+            <div className="browse-all">
+              <h2>Eager to find a new squad?</h2>
+              <button
+                className="generic-button"
+                onClick={() => history.push('/groups')}
+              >
+                Browse Other Groups
+              </button>
+            </div>
+          </div>
         </>
       )}
     </div>
