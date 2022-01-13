@@ -1,0 +1,39 @@
+.events-container {
+  margin: 0 20px;
+  width: 35%;
+}
+
+.events-container > *:not(:last-child) {
+  border-bottom: 1px solid #36454F;
+}
+
+.event-item {
+  padding: 20px 0;
+}
+
+.event-item:hover {
+  cursor: pointer;
+}
+
+.event-item:active > * {
+  color: var(--accent2);
+}
+
+.event-item > * {
+  margin: 5px 0;
+}
+
+.event-name {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.hosted-by {
+  color: gray;
+}
+
+.date-time {
+  font-size: 16px;
+  color: 	#3D0C02;
+  font-weight: bold;
+}
