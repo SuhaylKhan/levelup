@@ -69,6 +69,17 @@ export const editEvent = (event) => async (dispatch) => {
   return response;
 };
 
+export const deleteEvent = (eventId) => async (dispatch) => {
+  const response = await csrfFetch(
+    `/api/events/${eventId}`,
+    {
+      method: 'DELETE'
+    }
+  )
+  dispatch(getEvents());
+  return response;
+}
+
 const eventsReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_EVENTS: {

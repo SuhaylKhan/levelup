@@ -90,6 +90,17 @@ router.put(
     );
     return res.json({ editedEvent });
   })
+);
+
+router.delete(
+  '/:eventId',
+  asyncHandler(async (req, res) => {
+    const eventId = req.params.eventId;
+    await Event.destroy({
+      where: { id: eventId }
+    })
+    return;
+  })
 )
 
 module.exports = router;

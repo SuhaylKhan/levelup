@@ -56,11 +56,13 @@ function EventDetails() {
               </div>
               <div className='hosted-by'>Hosted by: <span>{event.User.username}</span></div>
             </div>
-            <div
-              className='nav-auth-link button edit'
-              onClick={() => history.push(`/events/${eventId}/edit`)}
-            >
-              Edit Event
+            <div className='edit-buttons'>
+              <div
+                className='nav-auth-link button edit'
+                onClick={() => history.push(`/events/${eventId}/edit`)}
+              >
+                Edit Event
+              </div>
             </div>
           </div>
           <div className='event-body'>

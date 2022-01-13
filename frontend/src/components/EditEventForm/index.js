@@ -118,11 +118,23 @@ function EditEventForm() {
                 </div>
                 <div className='hosted-by'>Hosted by: <span>{event.User.username}</span></div>
               </div>
-              <button
-                className='nav-auth-link button edit'
-              >
-                Confirm Changes
-              </button>
+              <div className='edit-buttons'>
+                <button
+                  className='nav-auth-link button edit'
+                >
+                  Confirm Changes
+                </button>
+                <button
+                  className='fake-button delete'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(eventActions.deleteEvent(event.id));
+                    history.push('/');
+                  }}
+                >
+                  Delete Event
+                </button>
+              </div>
             </div>
             <div className='event-body'>
               <div className='event-details-description'>
