@@ -2,7 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
-const SET_USER_GROUPS = "groups/setUserGroups";
+const SET_USER_GROUPS = "session/setUserGroups";
+const SET_USER_EVENTS = "session/setUserEvents";
 
 const setUser = (user) => {
   return {
@@ -21,6 +22,13 @@ const setUserGroups = (groups) => {
   return {
     type: SET_USER_GROUPS,
     payload: groups
+  };
+};
+
+const setUserEvents = (events) => {
+  return {
+    type: SET_USER_EVENTS,
+    payload: events
   };
 };
 
@@ -79,6 +87,19 @@ export const getUserGroups = (userId) => async (dispatch) => {
   return response;
 };
 
+export const getUserEvents = (userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/${userId}/events`);
+  const data = await response.json();
+  const hostedEvents = data.hostedEvents;
+  const joinedEvents = [];
+  data.userGroups.forEach(group => {
+    joinedEvents.push(...group.Events)
+  });
+  const userEvents = hostedEvents.concat(joinedEvents);
+  dispatch(setUserEvents(userEvents));
+  return response;
+}
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
@@ -92,7 +113,7 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;
-    case SET_USER_GROUPS: {
+    case SET_USER_GROUPS:
       newState = Object.assign({}, state);
       newState.groups = action.payload.reduce((a, b) => {
         return {
@@ -101,7 +122,15 @@ const sessionReducer = (state = initialState, action) => {
         }
       }, {});
       return newState;
-    }
+    case SET_USER_EVENTS:
+      newState = Object.assign({}, state);
+      newState.events = action.payload.reduce((a, b) => {
+        return {
+          ...a,
+          [b.id]: b
+        }
+      }, {});
+      return newState;
     default:
       return state;
   }
