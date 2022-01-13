@@ -1,0 +1,104 @@
+.event-details-container {
+  width: 62.5%;
+  margin: 0 auto;
+  font-size: 17px;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--offblack);
+  padding-bottom: 20px;
+}
+
+.event-date-time {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--datetime);
+}
+
+.event-details-name {
+  font-size: 28px;
+  font-weight: 600;
+  padding-top: 20px;
+}
+
+.hosted-by {
+  font-size: 14px;
+}
+
+.hosted-by > span {
+  color: var(--offblack);
+  font-weight: bold;
+}
+
+.edit-buttons {
+  align-self: flex-end;
+}
+
+.nav-auth-link.edit {
+  font-size: 17px;
+}
+
+.fake-button.delete {
+  font-size: 17px;
+  padding-right: 0;
+  padding-left: 20px;
+}
+
+.event-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-details-description {
+  width: 75%;
+  margin: 20px 0;
+}
+
+.event-details-description-header {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.sidebar > .small-container {
+  max-width: 15rem;
+  height: 5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  font-weight: 600;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.sidebar-details.browse-all {
+  max-width: 15rem;
+  height: fit-content;
+  margin: 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  display: flex;
+}
+
+.in-person.hosted-by {
+  margin-top: 10px;
+}
+
+.venue {
+  margin: 20px 0;
+}
+
+.venue-name {
+  font-weight: bold;
+}
+
+.venue-location {
+  font-size: 15px;
+}
+
+.capacity {
+  margin-bottom: 10px;
+}

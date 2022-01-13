@@ -12,11 +12,11 @@ function UserProfile({ sessionUser }) {
   const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
   const userGroups = useSelector((state) => state.session.groups);
-  const userEvents = useSelector((state) => state.events);
+  const userEvents = useSelector((state) => state.session.events);
 
   useEffect(() => {
     dispatch(sessionActions.getUserGroups(sessionUser.id));
-    dispatch(eventActions.getEvents()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.getUserEvents(sessionUser.id)).then(() => setIsLoaded(true));
   }, [dispatch])
 
   return (

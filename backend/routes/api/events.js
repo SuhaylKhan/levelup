@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Event } = require('../../db/models');
+const { Event, User, Venue } = require('../../db/models');
 
 const router = express.Router();
 
@@ -29,7 +29,9 @@ const validateEvent = [
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const events = await Event.findAll();
+    const events = await Event.findAll({
+      include: [User, Venue]
+    });
     return res.json({ events });
   })
 );
@@ -59,5 +61,46 @@ router.post(
     return res.json({ event });
   })
 );
+
+router.put(
+  '/:eventId',
+  validateEvent,
+  asyncHandler(async (req, res, next) => {
+    const eventId = req.params.eventId;
+    const {
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    } = req.body;
+    const changes = {
+      name,
+      description,
+      date,
+      capacity,
+      inPerson
+    };
+    if (req.body.venueId === null) changes.venueId = null;
+    const editedEvent = await Event.update(
+      changes,
+      {
+        where: { id: eventId }
+      }
+    );
+    return res.json({ editedEvent });
+  })
+);
+
+router.delete(
+  '/:eventId',
+  asyncHandler(async (req, res) => {
+    const eventId = req.params.eventId;
+    await Event.destroy({
+      where: { id: eventId }
+    })
+    return;
+  })
+)
 
 module.exports = router;

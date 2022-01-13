@@ -55,7 +55,7 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
-  border-bottom: 1px solid #36454F;
+  border-bottom: 1px solid var(--offblack);
 }
 
 .preview-event-details > * {
@@ -63,7 +63,7 @@
 }
 
 .preview-date-time {
-  color: #3D0C02;
+  color: var(--datetime);
   font-size: 16px;
   font-weight: bold;
 }

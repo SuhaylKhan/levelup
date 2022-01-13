@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Group } = require('../../db/models');
+const { User, Group, Event } = require('../../db/models');
 
 const router = express.Router();
 
@@ -30,7 +30,6 @@ const validateSignup = [
 router.get(
   '/:userId/groups',
   asyncHandler(async (req, res) => {
-    const { Op } = require('sequelize');
     const userId = req.params.userId;
 
     const memberGroups = await User.findByPk(userId, {
@@ -43,6 +42,32 @@ router.get(
     return res.json({
       memberGroups,
       adminGroups
+    })
+  })
+)
+
+router.get(
+  '/:userId/events',
+  asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const user = await User.findByPk(userId, {
+      include: {
+        model: Group,
+        include: {
+          model: Event
+        }
+      }
+    })
+    const hostedEvents = await Event.findAll({
+      where: {
+        hostId: userId
+      }
+    });
+    const userGroups = user.Groups
+
+    return res.json({
+      hostedEvents,
+      userGroups
     })
   })
 )

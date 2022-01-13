@@ -10,6 +10,8 @@ import GroupDetails from "./components/GroupDetails";
 import Groups from "./components/Groups";
 import UserProfile from "./components/UserProfile";
 import Events from "./components/Events";
+import EventDetails from "./components/EventDetails";
+import EditEventForm from "./components/EditEventForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,12 @@ function App() {
           </Route>
           <Route exact path="/events">
             <Events />
+          </Route>
+          <Route exact path="/events/:eventId">
+            <EventDetails />
+          </Route>
+          <Route path="/events/:eventId/edit">
+            <EditEventForm />
           </Route>
           <Route>
             404 NOT FOUND

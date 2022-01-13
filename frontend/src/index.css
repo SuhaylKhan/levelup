@@ -2,13 +2,15 @@
 :root {
   --accent1: #F65858;
   --accent2: #008294;
+  --datetime: #3D0C02;
+  --offblack: #36454F;
 }
 
 html {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   margin: 0;
-  color: #36454F;
+  color: var(--offblack);
   background-color: ghostwhite;
   height: 100%;
 }
