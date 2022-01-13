@@ -4,10 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 function SmallGroupPreview({ groups }) {
   const history = useHistory();
-  const [isUser, setIsUser] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-
-  if (sessionUser) setIsUser(true);
 
   const randomClass = [
     'right-top', 'right', 'right-bottom', 'bottom',

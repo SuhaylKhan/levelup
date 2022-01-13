@@ -1,6 +1,5 @@
 .profile-container {
   position: relative;
-  z-index: -1;
 }
 
 .profile-container > .profile-header {
