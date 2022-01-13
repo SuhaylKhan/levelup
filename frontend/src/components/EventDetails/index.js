@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as eventActions from '../../store/events';
+import './EventDetails.css'
 
 function EventDetails() {
   const dispatch = useDispatch();
@@ -32,6 +33,13 @@ function EventDetails() {
     return `${eventDate.toDateString()} @ ${eventTime[0]}:${eventTime[1]} ${eventTime[eventTime.length - 1]}`
   }
 
+  const randomClass = [
+    'right-top', 'right', 'right-bottom', 'bottom',
+    'left-bottom', 'left', 'left-top', 'top',
+    'circle'
+  ];
+  const randomNum = Math.floor(Math.random() * 9)
+
   return (
     <>
       {isLoaded && (
@@ -41,27 +49,29 @@ function EventDetails() {
               <div className='event-date-time'>
                 {formatDate(event)}
               </div>
-              <div>{event.name}</div>
-              <div>Hosted by: <span>{event.User.username}</span></div>
+              <div className='event-details-name'>{event.name}</div>
+              <div className='hosted-by'>Hosted by: <span>{event.User.username}</span></div>
             </div>
-            <div>Edit</div>
+            <div className='nav-auth-link button edit'>Edit Event</div>
           </div>
           <div className='event-body'>
             <div className='event-details-description'>
-              <div>Details</div>
+              <div className='event-details-description-header'>Details</div>
               <div>{event.description}</div>
             </div>
             <div className='sidebar'>
-              <div>{groups[event.groupId].name}</div>
-              <div>
-                <div>{event.inPerson ? 'In Person Event' : 'Online Event'}</div>
-                {event.Venue ?
-                  <div>
-                    <div>{event.Venue.name}</div>
-                    <div>{event.Venue.city}, {event.Venue.state} {event.Venue.zipCode}</div>
-                  </div>
-                  : null}
-                <div>{event.capacity} spots available</div>
+              <div className={`small-container to-${randomClass[randomNum]} active`}>{groups[event.groupId].name}</div>
+              <div className='sidebar-details browse-all'>
+                <div>
+                  <div className='in-person hosted-by'>{event.inPerson ? 'In Person Event' : 'Online Event'}</div>
+                  {event.Venue ?
+                    <div className='venue'>
+                      <div className='venue-name'>{event.Venue.name}</div>
+                      <div className='venue-location'>{event.Venue.city}, {event.Venue.state} {event.Venue.zipCode}</div>
+                    </div>
+                    : null}
+                </div>
+                <div className='capacity'>{event.capacity} spots available</div>
               </div>
             </div>
           </div>

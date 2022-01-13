@@ -75,11 +75,11 @@
 }
 
 .groups-container > *:not(:last-child) {
-  border-bottom: 1px solid #36454F;
+  border-bottom: 1px solid var(--offblack);
 }
 
 .med-container {
-  color: #36454F;
+  color: var(--offblack);
   padding: 20px 0;
 }
 
