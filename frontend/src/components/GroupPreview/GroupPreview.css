@@ -44,12 +44,12 @@
   transition: box-shadow 0.5s;
 }
 
-.small-container:hover {
+.small-container.active:hover {
   cursor: pointer;
   box-shadow: 0 0 1rem gray;
 }
 
-.small-container:active {
+.small-container.active:active {
   background-image: none;
   background-color: var(--accent2);
 }

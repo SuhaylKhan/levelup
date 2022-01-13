@@ -23,7 +23,7 @@ function UserProfile({ sessionUser }) {
         <>
           {Object.keys(userGroups).length > 0 ?
             (<>
-              <h1>Your Groups</h1>
+              <div className="profile-header">Your Groups</div>
               <div className="scroll-container">
                 <GroupPreview size="small" groups={userGroups} />
                 <div className="browse-all">

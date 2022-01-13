@@ -1,9 +1,13 @@
 .profile-container {
   position: relative;
+  z-index: -1;
 }
 
-.profile-container > h1 {
-  margin-left: 20px;
+.profile-container > .profile-header {
+  margin: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  width: fit-content;
 }
 
 .scroll-container {

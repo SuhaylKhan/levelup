@@ -1,7 +1,13 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function SmallGroupPreview({ groups }) {
   const history = useHistory();
+  const [isUser, setIsUser] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
+
+  if (sessionUser) setIsUser(true);
 
   const randomClass = [
     'right-top', 'right', 'right-bottom', 'bottom',
@@ -17,8 +23,12 @@ function SmallGroupPreview({ groups }) {
         return (
           <div
             key={i}
-            className={`small-container to-${randomClass[randomNum]}`}
-            onClick={() => history.push(`/groups/${group.id}`)}
+            className={
+              sessionUser ?
+                `small-container to-${randomClass[randomNum]} active` :
+                `small-container to-${randomClass[randomNum]}`
+            }
+            onClick={sessionUser ? () => history.push(`/groups/${group.id}`) : null}
           >
             <h2 className='group-name'>{group.name}</h2>
             <p className='group-description'>{group.description}</p>
