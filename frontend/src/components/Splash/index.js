@@ -1,5 +1,6 @@
-import gamingPic from "../../assets/gaming-together.jpg"
-import "./Splash.css"
+import gamingPic from "../../assets/gaming-together.jpg";
+import GroupsPreview from "../GroupPreview";
+import "./Splash.css";
 
 function Splash() {
   return (
@@ -10,6 +11,9 @@ function Splash() {
       </div>
       <div className="image">
         <img src={gamingPic} alt="Buddies gaming" height="300px" />
+      </div>
+      <div className="preview-container">
+        <GroupsPreview size="small" />
       </div>
     </div>
   );

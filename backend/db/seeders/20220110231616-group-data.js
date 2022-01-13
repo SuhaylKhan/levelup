@@ -17,6 +17,21 @@ module.exports = {
         adminId: 1,
         name: 'A Pirates Life For Me',
         description: 'Arrgh we be needin more pirates for our crew. Sail with us on the Sea of Thieves!'
+      },
+      {
+        adminId: 1,
+        name: 'A Pirates Life For',
+        description: 'Arrgh we be needin more pirates for our crew. Sail with us on the Sea of Thieves!'
+      },
+      {
+        adminId: 1,
+        name: 'A Pirates Life For ',
+        description: 'Arrgh we be needin more pirates for our crew. Sail with us on the Sea of Thieves!'
+      },
+      {
+        adminId: 1,
+        name: 'A Pirates Life For M',
+        description: 'Arrgh we be needin more pirates for our crew. Sail with us on the Sea of Thieves!'
       }
     ], {});
   },

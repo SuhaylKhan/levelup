@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
+import GroupPreview from '../GroupPreview';
+import './UserProfile.css'
 
 function UserProfile({ sessionUser }) {
   const dispatch = useDispatch();
@@ -16,32 +18,27 @@ function UserProfile({ sessionUser }) {
   }, [dispatch])
 
   return (
-    <>
-      {isLoaded && (
+    <div className='profile-container'>
+      {isLoaded && userGroups && (
         <>
-          {Object.keys(userGroups) > 0 ?
-            <>
-              <h1>Your Groups</h1>
-              {Object.entries(userGroups).map(ele => {
-                const group = ele[1];
-                return (
-                  <Link key={group.id} to={`/groups/${group.id}`}>
-                    <h2>{group.name}</h2>
-                    <p>{group.description}</p>
-                  </Link>
-                )
-              })}
-              <div>
-                Eager for another gaming sesh?
-                <button
-                  onClick={() => history.push('/groups')}
-                >
-                  Browse All Groups
-                </button>
+          {Object.keys(userGroups).length > 0 ?
+            (<>
+              <div className="profile-header">Your Groups</div>
+              <div className="scroll-container">
+                <GroupPreview size="small" groups={userGroups} />
+                <div className="browse-all">
+                  <h2>Eager to find a new squad?</h2>
+                  <button
+                    className="generic-button"
+                    onClick={() => history.push('/groups')}
+                  >
+                    Browse Other Groups
+                  </button>
+                </div>
               </div>
-            </>
+            </>)
             :
-            <>
+            (<>
               <h1>Welcome to Levelup!</h1>
               <div>
                 Find your squad
@@ -51,11 +48,11 @@ function UserProfile({ sessionUser }) {
                   Join a Group
                 </button>
               </div>
-            </>
+            </>)
           }
         </>
       )}
-    </>
+    </div>
   )
 };
 

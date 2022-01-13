@@ -1,0 +1,48 @@
+.profile-container {
+  position: relative;
+  z-index: -1;
+}
+
+.profile-container > .profile-header {
+  margin: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.scroll-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scroll-container > .small-container {
+  margin: 0 20px;
+  margin-bottom: 20px;
+}
+
+.browse-all {
+  margin: 0 20px;
+  margin-bottom: 20px;
+  background-color: #FFFAFA;
+  border-radius: 1rem;
+  box-shadow: 0 1px 0.25rem lightgray;
+  height: 17rem;
+  width: 23rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.browse-all > h2 {
+  margin-left: 20px;
+  margin-right: 20px;
+  height: fit-content;
+  font-size: 20px;
+  text-align: center;
+}
+
+.browse-all > .generic-button {
+  justify-self: center;
+  margin: 20px 0;
+}
