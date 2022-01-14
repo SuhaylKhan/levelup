@@ -10,6 +10,7 @@ function EventDetails() {
   const { eventId } = useParams();
   const event = useSelector((state) => state.events[eventId]);
   const groups = useSelector((state) => state.groups);
+  const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -39,6 +40,20 @@ function EventDetails() {
   ];
   const randomNum = Math.floor(Math.random() * 9)
 
+  const canEdit = () => {
+    if (sessionUser.id === event.hostId) {
+      return (
+        <div
+          className='nav-auth-link button edit'
+          onClick={() => history.push(`/events/${eventId}/edit`)}
+        >
+          Edit Event
+        </div>
+      )
+    }
+    return null;
+  }
+
   return (
     <>
       {isLoaded && (
@@ -54,12 +69,7 @@ function EventDetails() {
               <div className='hosted-by'>Hosted by: <span>{event.User.username}</span></div>
             </div>
             <div className='edit-buttons'>
-              <div
-                className='nav-auth-link button edit'
-                onClick={() => history.push(`/events/${eventId}/edit`)}
-              >
-                Edit Event
-              </div>
+              {canEdit()}
             </div>
           </div>
           <div className='event-body'>
