@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Modal } from "../../context/Modal";
+import * as sessionActions from "../../store/session";
 import LoginForm from "../LoginFormModal";
 import SignupForm from "../SignupFormModal";
 
 import "./AuthForm.css";
 
 function AuthFormModal() {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState("");
 
@@ -33,6 +36,15 @@ function AuthFormModal() {
         }}
       >
         Sign up
+      </button>
+      <button
+        className="generic-button demo"
+        onClick={() => dispatch(sessionActions.login({
+          credential: 'demo@user.io',
+          password: 'password'
+        }))}
+      >
+        Demo
       </button>
       {showModal && form === "login" && (
         <Modal onClose={onClose}>
