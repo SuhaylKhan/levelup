@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
+import * as eventActions from '../../store/events';
 import GroupPreview from '../GroupPreview';
 import EventsPreview from '../EventsPreview';
 import './UserProfile.css'
@@ -15,6 +16,7 @@ function UserProfile({ sessionUser }) {
 
   useEffect(() => {
     let isMounted = true;
+    dispatch(eventActions.getEvents());
     dispatch(sessionActions.getUserGroups(sessionUser.id));
     dispatch(sessionActions.getUserEvents(sessionUser.id)).then(() => {
       if (isMounted) {

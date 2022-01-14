@@ -150,7 +150,6 @@ function EditEventForm() {
                         placeholder={event.description}
                         value={description === undefined ? event.description : description}
                         onChange={(e) => setDescription(e.target.value)}
-                        onInput={() => this.parentNode.dataset.replicatedValue = this.value}
                       ></textarea>
                     </div>
                   </label>
