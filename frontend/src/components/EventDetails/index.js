@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import * as eventActions from '../../store/events';
-import EditEventForm from '../EditEventForm';
 import './EventDetails.css'
 
 function EventDetails() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { eventId } = useParams();
-  const sessionUser = useSelector((state) => state.session.user);
   const event = useSelector((state) => state.events[eventId]);
   const groups = useSelector((state) => state.groups);
   const [isLoaded, setIsLoaded] = useState(false);

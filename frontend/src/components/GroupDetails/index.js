@@ -13,7 +13,6 @@ function GroupDetails() {
   const params = useParams();
   const { groupId } = params;
   const group = useSelector((state) => state.groups[groupId])
-  const sessionUser = useSelector((state) => state.session.user)
 
   useEffect(() => {
     dispatch(groupActions.getGroups());
@@ -24,7 +23,6 @@ function GroupDetails() {
   let createEvent = (
     <button
       className='generic-button create-event'
-      // onClick={() => setShowEventForm(true)}
       onClick={() => {
         setShowModal(true)
         setForm('create-event')
@@ -33,16 +31,6 @@ function GroupDetails() {
       Create an Event
     </button>
   )
-
-  // if (sessionUser && group && sessionUser.id === group.adminId) {
-  //   createEvent = (
-  //     <button
-  //       onClick={() => setShowEventForm(true)}
-  //     >
-  //       Create an Event
-  //     </button>
-  //   )
-  // }
 
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState("");

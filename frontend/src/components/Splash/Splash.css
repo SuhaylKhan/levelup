@@ -5,6 +5,7 @@
   display: grid;
   grid-template-areas:
     "a b"
+    "d d"
     "c c";
 }
 
@@ -26,6 +27,7 @@
   grid-area: c;
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 }
 
 .preview-container > * {

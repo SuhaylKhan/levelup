@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import * as eventActions from '../../store/events';
 import * as groupActions from '../../store/groups';
 import './CreateEvent.css';
@@ -9,7 +8,6 @@ function CreateEventForm({ props }) {
   const { group, setForm } = props;
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const history = useHistory();
 
   const dateObj = new Date();
   const year = dateObj.getFullYear();
