@@ -72,6 +72,7 @@
 .groups-container {
   margin: 0 auto;
   width: 35%;
+  padding-bottom: 160px;
 }
 
 .groups-container > *:not(:last-child) {
