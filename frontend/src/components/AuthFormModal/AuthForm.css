@@ -1,6 +1,7 @@
 #modal-content {
   padding: 20px;
   width: 450px;
+  max-height: 50rem;
   border-radius: 10px;
   background-color: white;
 }
@@ -58,6 +59,7 @@
   color: var(--accent1);
   border: none;
   background: none;
+  padding: 0;
 }
 
 .fake-button:hover {

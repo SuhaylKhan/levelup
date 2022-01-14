@@ -20,7 +20,7 @@ export const getGroups = () => async (dispatch) => {
 const groupsReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_GROUPS: {
-      const newState = action.payload.reduce((a, b) => {
+      let newState = action.payload.reduce((a, b) => {
         return {
           ...a,
           [b.id]: b
