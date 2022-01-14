@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as eventActions from '../../store/events';
+import GroupDetails from '../GroupDetails';
+import './CreateEvent.css';
 
 function CreateEventForm({ props }) {
-  const { setShowEventForm, group } = props;
+  const { group, setForm } = props;
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory();
@@ -26,7 +28,7 @@ function CreateEventForm({ props }) {
 
   if (errors.length > 0) {
     errorUl = (
-      <ul>
+      <ul className="create-event error-list">
         {errors.map((error, idx) => (
           <li key={idx} className="error-item">
             {error}
@@ -53,7 +55,8 @@ function CreateEventForm({ props }) {
     ).then(
       () => {
         setErrors([]);
-        setShowEventForm(false);
+        setForm(false);
+        GroupDetails.forceUpdate()
       }
     ).catch(async (res) => {
       const data = await res.json();
@@ -63,9 +66,13 @@ function CreateEventForm({ props }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
+      <form
+        className='auth-form create-event-form'
+        onSubmit={handleSubmit}
+      >
+        <label className='auth-label' htmlFor="name">
           <input
+            className="auth-input"
             type="text"
             name="name"
             placeholder="Event Name"
@@ -74,8 +81,10 @@ function CreateEventForm({ props }) {
           />
         </label>
 
-        <label htmlFor="description">
+        <label className='auth-label' htmlFor="description">
           <textarea
+            rows='20'
+            className="auth-input"
             name="description"
             placeholder="Event Details/Description"
             value={description}
@@ -83,8 +92,9 @@ function CreateEventForm({ props }) {
           ></textarea>
         </label>
 
-        <label htmlFor="date">
+        <label className='auth-label' htmlFor="date">
           <input
+            className="auth-input"
             type="datetime-local"
             name="date"
             min={today}
@@ -93,8 +103,9 @@ function CreateEventForm({ props }) {
           />
         </label>
 
-        <label htmlFor="capacity">
+        <label className='auth-label' htmlFor="capacity">
           <input
+            className="auth-input"
             type="number"
             name="capacity"
             placeholder="RSVP Capacity"
@@ -107,7 +118,7 @@ function CreateEventForm({ props }) {
           />
         </label>
 
-        <label htmlFor="inPerson">
+        <label className="form-toggle-text create-event-radio" htmlFor="inPerson">
           Will your event be in-person or online?
           <label htmlFor="in-person">
             <input
@@ -120,7 +131,7 @@ function CreateEventForm({ props }) {
             />
             In-Person
           </label>
-          <label htmlFor="online">
+          <label  htmlFor="online">
             <input
               id="online"
               type="radio"
@@ -132,21 +143,27 @@ function CreateEventForm({ props }) {
             Online
           </label>
         </label>
-        <p>
+        <div className='form-toggle-text create-event-radio'>
           {
             inPerson ?
               'You can add a venue to in-person events after the event is created' :
               'Make sure to add event details in the text box above so everyone knows where/how to join your online event'
           }
-        </p>
+        </div>
         {errorUl}
-        <button>Create Event</button>
+        <div className='create-event-buttons'>
+          <button className="auth-button generic-button">Create Event</button>
+          <button
+            className="auth-button generic-button"
+            onClick={(e) => {
+              e.preventDefault()
+              setForm(false)
+            }}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
-      <button
-        onClick={() => setShowEventForm(false)}
-      >
-        Cancel
-      </button>
     </>
   )
 };
