@@ -31,11 +31,9 @@ function App() {
             {sessionUser ? <Redirect to={`/users/${sessionUser.id}`} /> : <Splash />}
           </Route>
           <Route exact path="/groups">
-            {/* {sessionUser ? <Groups /> : <Redirect to="/" />} */}
             <Groups />
           </Route>
           <Route path="/groups/:groupId">
-            {/* {sessionUser ? <GroupDetails /> : <Redirect to="/" />} */}
             <GroupDetails />
           </Route>
           <Route path="/users/:userId">
