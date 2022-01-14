@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import * as eventActions from '../../store/events';
+import './EditEventForm.css'
 
 function EditEventForm() {
   const history = useHistory();
@@ -13,8 +14,7 @@ function EditEventForm() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!event) dispatch(eventActions.getEvents()).then(() => setIsLoaded(true));
-    else setIsLoaded(true);
+    dispatch(eventActions.getEvents()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   const randomClass = [
@@ -97,6 +97,7 @@ function EditEventForm() {
                 <div className='event-date-time'>
                   <label htmlFor="date">
                     <input
+                      className='auth-input edit-event-date'
                       type="datetime-local"
                       name="date"
                       min={eventDate}
@@ -108,6 +109,7 @@ function EditEventForm() {
                 <div className='event-details-name'>
                   <label htmlFor="name">
                     <input
+                      className='auth-input event-details-name'
                       type="text"
                       name="name"
                       placeholder={event.name}
@@ -141,12 +143,17 @@ function EditEventForm() {
                 <div className='event-details-description-header'>Details</div>
                 <div>
                   <label htmlFor="description">
-                    <textarea
-                      name="description"
-                      placeholder={event.description}
-                      value={description === undefined ? event.description : description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    ></textarea>
+                    <div className='grow-wrap'>
+                      <textarea
+                        className='auth-input'
+                        rows='10'
+                        name="description"
+                        placeholder={event.description}
+                        value={description === undefined ? event.description : description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        onInput={() => this.parentNode.dataset.replicatedValue = this.value}
+                      ></textarea>
+                    </div>
                   </label>
                 </div>
               </div>
@@ -155,8 +162,8 @@ function EditEventForm() {
                 <div className='sidebar-details browse-all'>
                   <div>
                     <div className='in-person hosted-by'>
-                      <label htmlFor="inPerson">
-                        <label htmlFor="in-person">
+                      <label className='radio-container' htmlFor="inPerson">
+                        <div>
                           <input
                             id="in-person"
                             type="radio"
@@ -165,9 +172,11 @@ function EditEventForm() {
                             value={inPerson}
                             onChange={() => setInPerson(true)}
                           />
-                          In-Person
-                        </label>
-                        <label htmlFor="online">
+                          <label className='radio-option' htmlFor="in-person">
+                            In-Person
+                          </label>
+                        </div>
+                        <div>
                           <input
                             id="online"
                             type="radio"
@@ -176,8 +185,10 @@ function EditEventForm() {
                             value={inPerson}
                             onChange={() => setInPerson(false)}
                           />
-                          Online
-                        </label>
+                          <label className='radio-option' htmlFor="online">
+                            Online
+                          </label>
+                        </div>
                       </label>
                     </div>
                     {event.inPerson && event.venueId ?

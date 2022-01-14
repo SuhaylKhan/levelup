@@ -15,8 +15,7 @@ function EventDetails() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!event) dispatch(eventActions.getEvents()).then(() => setIsLoaded(true));
-    else setIsLoaded(true);
+    dispatch(eventActions.getEvents()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   const formatDate = (event) => {

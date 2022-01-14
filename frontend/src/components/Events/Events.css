@@ -1,6 +1,7 @@
 .events-container {
-  margin: 0 20px;
+  margin: 0 auto;
   width: 35%;
+  padding-bottom: 160px;
 }
 
 .events-container > *:not(:last-child) {

@@ -118,9 +118,9 @@ function CreateEventForm({ props }) {
           />
         </label>
 
-        <label className="form-toggle-text create-event-radio" htmlFor="inPerson">
+        <label className="form-toggle-text create-event-radio radio-container" htmlFor="inPerson">
           Will your event be in-person or online?
-          <label htmlFor="in-person">
+          <div>
             <input
               id="in-person"
               type="radio"
@@ -129,9 +129,11 @@ function CreateEventForm({ props }) {
               value={inPerson}
               onChange={() => setInPerson(true)}
             />
-            In-Person
-          </label>
-          <label  htmlFor="online">
+            <label className='radio-option' htmlFor="in-person">
+              In Person
+            </label>
+          </div>
+          <div>
             <input
               id="online"
               type="radio"
@@ -140,15 +142,13 @@ function CreateEventForm({ props }) {
               value={inPerson}
               onChange={() => setInPerson(false)}
             />
-            Online
-          </label>
+            <label className='radio-option' htmlFor="online">
+              Online
+            </label>
+          </div>
         </label>
         <div className='form-toggle-text create-event-radio'>
-          {
-            inPerson ?
-              'You can add a venue to in-person events after the event is created' :
-              'Make sure to add event details in the text box above so everyone knows where/how to join your online event'
-          }
+          Make sure to add event details in the text box above so everyone knows where/how to join your online event
         </div>
         {errorUl}
         <div className='create-event-buttons'>

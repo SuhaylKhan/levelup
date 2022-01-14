@@ -1,5 +1,6 @@
 .profile-container {
   position: relative;
+  padding-bottom: 160px;
 }
 
 .profile-container > .profile-header {

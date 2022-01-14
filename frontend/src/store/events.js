@@ -79,6 +79,7 @@ export const deleteEvent = (eventId) => async (dispatch) => {
     }
   )
   dispatch(getEvents());
+  dispatch(groupActions.getGroups());
   return response;
 }
 

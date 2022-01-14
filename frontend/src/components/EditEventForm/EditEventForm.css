@@ -1,0 +1,54 @@
+.grow-wrap {
+  display: grid;
+  margin-right: 20px;
+}
+.grow-wrap::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+.grow-wrap > textarea {
+  resize: none;
+  overflow-y: scroll;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  padding: 0.5rem;
+  font: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+input[type=radio] {
+  visibility: hidden;
+  position: absolute;
+}
+
+input[type=radio]:checked ~ .radio-option {
+  color: var(--accent2);
+  font-weight: 600;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.radio-container > * {
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.radio-option:hover {
+  cursor: pointer;
+}
+
+.auth-input.event-details-name {
+  padding: 5px;
+  margin: 5px 0;
+  color: var(--offblack);
+}
+
+.auth-input.edit-event-date {
+  color: var(--datetime);
+  font-size: 15px;
+}
