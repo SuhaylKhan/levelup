@@ -16,7 +16,7 @@ function GroupDetails() {
   const sessionUser = useSelector((state) => state.session.user)
 
   useEffect(() => {
-    if (!group) dispatch(groupActions.getGroups());
+    dispatch(groupActions.getGroups());
   }, [dispatch])
 
   const [showEventForm, setShowEventForm] = useState(false);
