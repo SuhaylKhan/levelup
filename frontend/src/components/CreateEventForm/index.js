@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as eventActions from '../../store/events';
-import GroupDetails from '../GroupDetails';
+import * as groupActions from '../../store/groups';
 import './CreateEvent.css';
 
 function CreateEventForm({ props }) {
@@ -56,7 +56,7 @@ function CreateEventForm({ props }) {
       () => {
         setErrors([]);
         setForm(false);
-        GroupDetails.forceUpdate()
+        dispatch(groupActions.getGroups());
       }
     ).catch(async (res) => {
       const data = await res.json();

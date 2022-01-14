@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import * as groupActions from "./groups";
 
 const SET_EVENTS = 'events/setEvents';
 
@@ -66,6 +67,7 @@ export const editEvent = (event) => async (dispatch) => {
     }
   );
   dispatch(getEvents());
+  dispatch(groupActions.getGroups());
   return response;
 };
 
